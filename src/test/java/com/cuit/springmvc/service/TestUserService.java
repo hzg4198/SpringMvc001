@@ -13,12 +13,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringConfig.class)
 public class TestUserService {
-@Autowired
-    private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
     @Test
     public void Test(){
-        User user = userMapper.selectByPrimaryKey(10);
+        User user = userService.selectByPrimaryKey(10);
         System.out.println(user);
     }
 }

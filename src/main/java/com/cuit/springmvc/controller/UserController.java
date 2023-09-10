@@ -1,37 +1,26 @@
 package com.cuit.springmvc.controller;
 
+import com.cuit.springmvc.pojo.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/user")
+@RestController
+@RequestMapping("/users")
 public class UserController {
 
-    @RequestMapping("/save")
-    @ResponseBody
-    public String save(String name,int age){
-        System.out.println("user save ==>" + name);
-        System.out.println("age == > " + age);
+    @PostMapping
+    public String save(@RequestBody User user){
+        System.out.println(user);
         return "{'info':'springmvc'}";
     }
 
-    @RequestMapping("/delete")
-    @ResponseBody
+    @DeleteMapping
     public String delete(){
         System.out.println("user delete..");
         return "{'info':'delete success'}";
     }
 
-    @RequestMapping("list")
-    @ResponseBody
-    public String listParamForJson(@RequestParam List<String> likes){
-        System.out.println("list common json 参数传递==>"+likes);
-
-        return "{'module':'list common for json param'}";
-    }
 
 }
