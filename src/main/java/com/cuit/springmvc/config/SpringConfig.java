@@ -6,6 +6,6 @@ import org.springframework.context.annotation.*;
 @Configuration
 @PropertySource("classpath:jdbc.properties")
 @Import({JdbcConfig.class, MybatisConfig.class})
-@ComponentScan({"com.cuit.springmvc.service","com.cuit.springmvc.mapper"})
+@ComponentScan({"com.cuit.springmvc.service","com.cuit.springmvc.mapper","com.cuit.springmvc.config"})
 public class SpringConfig {
 }

@@ -11,7 +11,7 @@
 </head>
 <body> 
 <button id="deleteAll">点击删除</button>
-<form action="${pageContext.request.contextPath }/item/queryitem.action" method="post">
+<form action="${pageContext.request.contextPath }/queryitem.action" method="post">
 查询条件：
 <table width="100%" border=1>
 <tr>
@@ -58,16 +58,34 @@
 	<td>
 	<input type="text" name="itemList[${s.index}].detail" value="${item.detail }">
 	</td>
-	<td><a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}">修改</a></td>
+	<td><a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}">修改</a></td>
 </tr> 
 </c:forEach> 
 
 </table>
 </form>
 </body>
-<script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js	"></script>
+<script type="text/javascript">
 
+	$("#deleteAll").click(function(){
+		var all=$("input[name='ids']:checked");
 
+		if(all.length==0){
+			alert("请选择需要删除的商品")
+			return false;
+		}
+		var ids=[];
+		if(window.confirm("您确定需要删除所选"+all.length+"个商品吗")){
+			//前端序列化
+			let ids = all.serialize();
+			//发送请求后台
+			location.href="${pageContext.request.contextPath}/DeleteAllPidsServlet?pids="+ids;
+		}else{
+			all.removeProp("checked")
+		}
+	});
+</script>
 
 
 </html>
